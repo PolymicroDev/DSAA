@@ -16,9 +16,17 @@ class Hash_Table:
     def __getitem__(self,key):
         h = self.get_hash(key)
         return self.arr[h]
+    
+    def __delitem__(self,key):
+        h = self.get_hash(key)
+        self.arr[h] = None
+        
+    
+    
 
 table = Hash_Table()
-print(table.get_hash("march 9"))
+table['march 6'] = 130
+print(table['march 6'])
 
     
 
