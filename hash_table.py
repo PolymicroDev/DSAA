@@ -17,6 +17,9 @@ class Hash_Table:
         h = self.get_hash(key)
         return self.arr[h]
 
+table = Hash_Table()
+print(table.get_hash("march 9"))
+
     
 
 
