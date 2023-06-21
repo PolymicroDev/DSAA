@@ -36,10 +36,7 @@ class Hash_Table:
     
 
 table = Hash_Table()
-table['march 1'] = 130
-table['march 2'] = 120
-table['march 2'] = 110
-table['march 2'] = 111
+table["March 2"] = 133
 print(table.arr)
 
 
