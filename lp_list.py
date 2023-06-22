@@ -13,25 +13,54 @@ class Hash_Table:
         h = self.get_hash(key)
         if self.arr[h]:
             while self.arr[h]:
-                if h < 9:
+                if h < len(self.arr)-1:
                     h+=1
-                    continue
-                h = 0
-                while self.arr[h]:
-                    h+=1
-                    
-            self.arr[h] = value
-        self.arr[h] = value
+                else:
+                    h = 0
+            if not self.arr[h]:
+                self.arr[h] = (key,value)
+                return
+            raise Exception("Out of space, unable to add key")
+        self.arr[h] = (key,value)
         
 
     def __getitem__(self,key):
         h = self.get_hash(key)
-        return self.arr[h][1]
+        if self.arr[h]:
+            if self.arr[h][0] == key:
+                return self.arr[h][1]
+            
+            h = 0
+            while self.arr[h][0] != key:
+                if h < len(self.arr)-1:
+                    h+=1
+
+            if self.arr[h][0] == key:
+                return self.arr[h][1]
+            raise Exception("Didn't find key.")
+        raise Exception("No key")
+        
+        
         
     
     def __delitem__(self,key):
         h = self.get_hash(key)
-        self.arr[h] = None
+        if self.arr[h]:
+            if self.arr[h][0] == key:
+                self.arr[h] = None
+                return
+            
+            h = 0
+            while self.arr[h][0] != key:
+                if h < len(self.arr)-1:
+                    h+=1
+
+            if self.arr[h][0] == key:
+                self.arr[h] = None
+                return
+            raise Exception("Didn't find key.")
+        raise Exception("No key")
+        
         
     
         
@@ -39,8 +68,20 @@ class Hash_Table:
 
 table = Hash_Table()
 table["March 9"] = 11
-table["March 9"] = 12
+table["March 10"] = 14
+table["9 March"] = 13
+table["March 11"] = 112
+table["11 March"] = 129
+table["March 22"] = 122
+table["March 23"] = 111
+table["March 25"] = 115
+table["March 27"] = 110
 
+
+
+print(table.arr)
+print(table["9 March"])
+del table["9 March"]
 print(table.arr)
 
     
