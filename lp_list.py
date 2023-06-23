@@ -56,7 +56,6 @@ class Hash_Table:
             if self.arr[h][0] == key:
                 self.arr[h] = None
                 return
-            
             h = 0
             while self.arr[h][0] != key:
                 if h < len(self.arr)-1:
@@ -82,7 +81,7 @@ table["March 918"] = 12
 table["March 888"] = 134
 table["March 1234"] = 120
 table["March 1981"] = 12
-table["March 1"] = 987
+table["March 2"] = 987
 table["March 6"] = 919
 
  
@@ -90,7 +89,7 @@ table["March 6"] = 919
 print(table.get_hash("March 1234"))
 print(table.arr)
 
-print(table["March 299 "])
+print(table["March 2"])
 
     
 

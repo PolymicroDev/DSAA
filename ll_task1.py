@@ -69,5 +69,43 @@ class LinkedList:
             itr = itr.next
             count +=1
 
+    def insert_after_value(self, data_after, data_to_insert):
+        itr = self.head
+        found = False
+        while itr:
+            if itr.data == data_after:
+                found = True
+                break
+            itr = itr.next
+        if found == False:
+            raise Exception("Data not found")
+        itr.next = Node(data_to_insert,itr.next)
+        
+        
+        
+    
+    def remove_by_value(self,data):
+        index = 0
+        itr = self.head
+        while itr:
+            if itr.data == data:
+                self.remove_at(index)
+                return
+            itr = itr.next
+            index +=1
+        raise Exception("Data not found")
+        
+
 
 ll = LinkedList()
+ll.insert_values(["banana","mango","grapes","orange"])
+ll.print()
+ll.insert_after_value("mango","apple") # insert apple after mango
+ll.print()
+ll.remove_by_value("orange") # remove orange from linked list
+ll.print()
+ll.remove_by_value("banana")
+ll.remove_by_value("mango")
+ll.remove_by_value("apple")
+ll.remove_by_value("grapes")
+ll.print()

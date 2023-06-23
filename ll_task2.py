@@ -1,16 +1,17 @@
 class Node:
-    def __init__(self,data=None,next=None):
+    def __init__(self,data=None,next=None,prev=None):
         self.data = data
         self.next = next
+        self.prev = prev
 
 class LinkedList:
     def __init__(self):
         self.head = None
     
     def insert_at_beginning(self,data):
-        self.head = Node(data, self.head)
+        self.head = Node(data, self.head, None)
     
-    def print(self):
+    def print_forward(self):
         if self.head is None:
             print("Linked list is empty")
             return
@@ -23,12 +24,31 @@ class LinkedList:
             itr = itr.next
 
             if itr is not None:
-                llstr+= str("-->")
+                llstr+= str("<-->")
         print(llstr)
     
+    def print_backwards(self):
+        if self.head is None:
+            print("Linked list is empty")
+            return
+        itr = self.head
+
+        while itr.next:
+            itr = itr.next
+        llst = ''
+
+        while itr:
+            llst+= str(itr.data)
+            itr = itr.prev
+
+            if itr is not None:
+                llst+= str("<-->")
+            
+        print(llst)
+
     def insert_at_end(self,data):
         if self.head is None:
-            self.head = Node(data,None)
+            self.head = Node(data,None,None)
             return
 
         itr = self.head
@@ -36,7 +56,7 @@ class LinkedList:
             
             itr = itr.next
         
-        itr.next = Node(data,None)
+        itr.next = Node(data,None,itr)
     
     def insert_values(self,data_list):
         self.head=None
@@ -71,3 +91,8 @@ class LinkedList:
 
 
 ll = LinkedList()
+ll.insert_values(["Mango","Ananas","Apple","Orange"])
+print("Backwards:")
+ll.print_backwards()
+print("Forward:")
+ll.print_forward()
