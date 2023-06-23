@@ -15,9 +15,12 @@ class Hash_Table:
             while self.arr[h]:
                 if h < len(self.arr)-1:
                     h+=1
+                elif h == len(self.arr)-1 and self.arr[h]:
+                    break
                 else:
                     h = 0
-            if not self.arr[h]:
+                
+            if self.arr[h] is None:
                 self.arr[h] = (key,value)
                 return
             raise Exception("Out of space, unable to add key")
@@ -30,12 +33,16 @@ class Hash_Table:
             if self.arr[h][0] == key:
                 return self.arr[h][1]
             
-            h = 0
-            while self.arr[h][0] != key:
+            
+            while self.arr[h][0] != key and self.arr[h][0]:
                 if h < len(self.arr)-1:
                     h+=1
-
-            if self.arr[h][0] == key:
+                elif h == len(self.arr)-1 and self.arr[h][0]:
+                    break
+                else:
+                    h = 0
+        
+            if self.arr[h][0] == key and self.arr[h][0]:
                 return self.arr[h][1]
             raise Exception("Didn't find key.")
         raise Exception("No key")
@@ -67,22 +74,23 @@ class Hash_Table:
     
 
 table = Hash_Table()
-table["March 9"] = 11
-table["March 10"] = 14
-table["9 March"] = 13
-table["March 11"] = 112
-table["11 March"] = 129
-table["March 22"] = 122
-table["March 23"] = 111
-table["March 25"] = 115
-table["March 27"] = 110
+table["March 12"] = 11
+table["March 13"] = 15
+table["March 28"] = 19
+table["March 229"] = 122
+table["March 918"] = 12
+table["March 888"] = 134
+table["March 1234"] = 120
+table["March 1981"] = 12
+table["March 1"] = 987
+table["March 6"] = 919
 
+ 
 
-
+print(table.get_hash("March 1234"))
 print(table.arr)
-print(table["9 March"])
-del table["9 March"]
-print(table.arr)
+
+print(table["March 299 "])
 
     
 
