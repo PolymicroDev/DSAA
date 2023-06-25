@@ -46,9 +46,36 @@ class Stack:
 
         return reversed_string
 
-    def is_balanced(self):
-        pass
 
-s1 = Stack()
-print(s1.reverse_string("Covid 19"))
+
+def is_pair(ch1,ch2):
+    dict = {
+        '[':']',
+        '(':')',
+        '{':'}'
+    }
+    return dict[ch1] == ch2
+        
+
+def is_balanced(string: str):
+    stk = Stack()
+    is_balanced = False
+    for s in string:
+        if s == '[' or s == '{' or s=='(':
+            stk.push(s)
+            is_balanced = False
+
+        if s == ']' or s == '}' or s== ')':
+            if stk.size() == 0:
+                is_balanced = False
+                break
+            
+            if is_pair(stk.pop(),s):
+                is_balanced = True
+
+            else:
+                is_balanced = False
+
+    return is_balanced
+
 
