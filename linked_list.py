@@ -20,10 +20,11 @@ class LinkedList:
 
         while itr:
             llstr += str(itr.data)
+            
             itr = itr.next
-
-            if itr is not None:
+            if itr:
                 llstr+= str("-->")
+            
         print(llstr)
     
     def insert_at_end(self,data):
@@ -71,3 +72,5 @@ class LinkedList:
 
 
 ll = LinkedList()
+ll.insert_values(["Mango","Banana","Orange"])
+ll.print()
