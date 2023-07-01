@@ -11,6 +11,21 @@ def fib(n):
         return n
     return fib(n-1) + fib(n-2)
 
+def series(n):
+    if n<1:
+        return 0
+    else:
+        return n + series(n-2)
+   
+def harmonic_sum(n):
+    if n == 1:
+        return 1
+    return (1/n) + harmonic_sum((n-1))
+
+def sum_digits(num):
+    pass
+
 if __name__=='__main__':
-    print(find_sum(5))
-    print(fib(10))
+    print(find_sum(10))
+    print(series(6))
+    print(harmonic_sum(5))
