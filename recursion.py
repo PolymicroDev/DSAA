@@ -22,10 +22,23 @@ def harmonic_sum(n):
         return 1
     return (1/n) + harmonic_sum((n-1))
 
-def sum_digits(num):
-    pass
+def sum_digits_itr(num):
+    sum = 0
+    for n in str(num):
+        sum += int(n)
+    return sum
 
+def sum_digits(num):
+    num = str(num)
+    if len(num)>=2:
+        print("cycle")
+        return int(num[:-1]) + sum_digits(num)
+    return int(num[0])
+  
+    
 if __name__=='__main__':
     print(find_sum(10))
     print(series(6))
     print(harmonic_sum(5))
+    print(sum_digits_itr(345))
+    print(sum_digits(12334))
