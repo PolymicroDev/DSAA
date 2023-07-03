@@ -18,9 +18,9 @@ def series(n):
         return n + series(n-2)
    
 def harmonic_sum(n):
-    if n == 1:
+    if n<2:
         return 1
-    return (1/n) + harmonic_sum((n-1))
+    return 1/n + harmonic_sum(n-1)
 
 def sum_digits_itr(num):
     sum = 0
@@ -30,15 +30,39 @@ def sum_digits_itr(num):
 
 def sum_digits(num):
     num = str(num)
-    if len(num)>=2:
-        print("cycle")
-        return int(num[:-1]) + sum_digits(num)
+    if len(num)>1:
+        return int(num[-1]) + sum_digits(num.replace(num[-1],""))
     return int(num[0])
+
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n-1)
+
+def pow(n,p):
+    if p==0:
+        return 1
+    if p == 1:
+        return n
+    return n*pow(n,p-1)
+
+    
+
+
+
+"""
+def sum_digits(num):
+    if len(num)>1:
+        print("cycle")
+        return int(num.pop()) + sum_digits(num)
+    return int(num[0])
+"""
   
     
 if __name__=='__main__':
     print(find_sum(10))
-    print(series(6))
-    print(harmonic_sum(5))
-    print(sum_digits_itr(345))
-    print(sum_digits(12334))
+    print(series(7))
+    print(harmonic_sum(6))
+    print(sum_digits(1234567))
+    print(fact(5))
+    print(pow(5,0))
