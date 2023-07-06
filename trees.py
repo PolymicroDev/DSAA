@@ -1,6 +1,7 @@
 class TreeNode:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, name, des):
+        self.name = name
+        self.des = des
         self.children = []
         self.parent = None
 
@@ -13,40 +14,60 @@ class TreeNode:
 
         return level
 
-    def print_tree(self):
+    def print_tree(self,arg):
         spaces = ' ' * self.get_level() * 3
         prefix = spaces + "|__" if self.parent else ""
-        print(prefix + self.data)
-        if self.children:
-            for child in self.children:
-                child.print_tree()
+        if arg == "name":
+            print(prefix + self.name)
+            if self.children:
+                for child in self.children:
+                    child.print_tree("name")
+
+        elif arg == "designation":
+            print(prefix + self.des)
+            if self.children:
+                for child in self.children:
+                    child.print_tree("designation")
+
+        elif arg == "both":
+            print(prefix + self.name + " " + "(" + self.des +")") 
+            if self.children:
+                for child in self.children:
+                    child.print_tree("both")
 
     def add_child(self, child):
         child.parent = self
         self.children.append(child)
 
-def build_product_tree():
-    root = TreeNode("Electronics")
+def build_team_tree():
+    root = TreeNode("Nilupul","CEO")
 
-    laptop = TreeNode("Laptop")
-    laptop.add_child(TreeNode("Mac"))
-    laptop.add_child(TreeNode("Surface"))
-    laptop.add_child(TreeNode("Thinkpad"))
+    chinmay = TreeNode("Chinmay", "CTO")
+    vishwa = TreeNode("Vishwa","Infrastructure Head")
+    vishwa.add_child(TreeNode("Dhaval","Cloud Manager"))
+    vishwa.add_child(TreeNode("Abhijit","App Manager"))
 
-    cellphone = TreeNode("Cell Phone")
-    cellphone.add_child(TreeNode("iPhone"))
-    cellphone.add_child(TreeNode("Google Pixel"))
-    cellphone.add_child(TreeNode("Vivo"))
+    chinmay.add_child(vishwa)
+    chinmay.add_child(TreeNode("Aamir","Application Head"))
 
-    tv = TreeNode("TV")
-    tv.add_child(TreeNode("Samsung"))
-    tv.add_child(TreeNode("LG"))
+    gels = TreeNode("Gels", "HR Head")
+    gels.add_child(TreeNode("Peter","Recruitment Manager"))
+    gels.add_child(TreeNode("Waqas","Policy Manager"))
+    
 
-    root.add_child(laptop)
-    root.add_child(cellphone)
-    root.add_child(tv)
+    
 
-    root.print_tree()
+    root.add_child(chinmay)
+    root.add_child(gels)
+
+    return root
+
+def build_location_tree():
+    root = TreeNode("Global")
 
 if __name__ == '__main__':
-    build_product_tree()
+    root_node = build_team_tree()
+    root_node.print_tree("name") # prints only name hierarchy
+    root_node.print_tree("designation") # prints only designation hierarchy
+    root_node.print_tree("both") # prints both (name and designation) hierarchy
+
