@@ -9,6 +9,9 @@ class Queue:
         self.buffer.appendleft(val)
         
     def dequeue(self):
+        if self.buffer.size() == 0:
+            print("Queue is empty")
+            return
         return self.buffer.pop()
     
     def is_empty(self):

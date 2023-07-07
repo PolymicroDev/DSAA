@@ -58,6 +58,6 @@ if __name__ == '__main__':
     root.right.left.right = Node(8)
  
     inorder(root)
-    print("Preorder: ")
+    print("  ")
     preorder(root)
  
