@@ -100,6 +100,54 @@ class BinarySearchTreeNode:
                 return self.right.search(val)
             else:
                 return False
+            
+    def delete(self, val):
+        if val < self.data:
+            if self.left:
+                self.left = self.left.delete(val)
+
+        elif val > self.data:
+            if self.right:
+                self.right = self.right.delete(val)
+
+        else:
+            if self.left == None and self.right == None:
+                return None
+            if self.left == None:
+                return self.right
+            if self.right == None:
+                return self.left
+            
+            min_val = self.right.min()
+            self.data = min_val
+            self.right = self.right.delete(min_val)
+
+        return self
+
+    def delete_max(self, val):
+        if val < self.data:
+            if self.left:
+                self.left = self.left.delete_max(val)
+
+        elif val > self.data:
+            if self.right:
+                self.right = self.right.delete_max(val)
+
+        else:
+            if self.left == None and self.right == None:
+                return None
+            if self.left == None:
+                return self.right
+            if self.right == None:
+                return self.left
+
+            max_val = self.left.max()
+            self.data = max_val
+            self.left = self.left.delete_max(max_val)
+
+        return self
+
+            
 
     
 def build_tree(elements):
@@ -113,10 +161,5 @@ def build_tree(elements):
 if __name__ == '__main__':
     numbers = [17,4,1,20,9,23,18,34]
     numbers_tree = build_tree(numbers)
-    print(numbers_tree.in_order_traversal())
-    print(numbers_tree.post_order_traversal())
-    print(numbers_tree.pre_order_traversal())
-    print(numbers_tree.search(20))
-    print(numbers_tree.min())
-    print(numbers_tree.max())
-    print(numbers_tree.sum_values())
+    numbers_tree.delete_max(20)
+    print("After deleting 20 ", numbers_tree.in_order_traversal())  # this should print [1, 4, 9, 17, 18, 23, 34]
