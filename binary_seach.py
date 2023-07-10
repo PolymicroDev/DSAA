@@ -18,8 +18,7 @@ def binary_search(numbers_list, number_to_find):
         mid_number = numbers_list[mid_index]
 
         if mid_number == number_to_find:
-            indices.append(mid_index)
-            print("loop")
+            return mid_index
 
         if mid_number < number_to_find:
             left_index = mid_index + 1
