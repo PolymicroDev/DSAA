@@ -13,7 +13,7 @@ def find_compliment(numbers,sum):
             
     return ("No compliment was found")
 
-find_compliment([1,2,3,4,5,6,7],6)
+find_compliment([1,3,4,2],6)
 
 
 
